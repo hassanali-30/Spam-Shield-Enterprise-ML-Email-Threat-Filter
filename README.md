@@ -1,6 +1,6 @@
-# Spam-Shield-Enterprise-ML-Email-Threat-Filter
+# Spam-Shield Enterprise ML Email Threat Filter
 An enterprise desktop security tool built with Python, CustomTkinter, and Scikit-Learn  . Features automated dataset harmonization, multi-model ML benchmarking (Naive Bayes, SVM, Logistic Regression, Random Forest), real-time threat risk grading, and embedded performance analytics  .
-# 🛡️ Spam-Shield-Enterprise-ML-Email-Threat-Filter
+# 🛡️ Spam-Shield Enterprise ML Email Threat Filter
 
 [![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![GUI Framework](https://img.shields.io/badge/GUI-CustomTkinter-blueviolet.svg)](https://github.com/TomSchimansky/CustomTkinter)

@@ -23,19 +23,40 @@ An enterprise desktop security tool built with Python, CustomTkinter, and Scikit
 ---
 
 ## 🏗️ ML & Architecture Pipeline
-Raw Email / CSV Input│▼┌─────────────────────────┐│  NLP Preprocessing      │ ──> Lowercasing, regex cleaning, URL/email stripping└─────────────────────────┘│▼┌─────────────────────────┐│  TF-IDF Vectorizer      │ ──> Unigram/Bigram extraction (Top 5,000 features)└─────────────────────────┘│▼┌─────────────────────────┐│  Model Benchmarking     │ ──> Naive Bayes | Logistic Reg | Linear SVM | Random Forest└─────────────────────────┘│▼┌─────────────────────────┐│  Optimal Model Selector │ ──> Auto-export artifacts to ./models/ (F1-score optimized)└─────────────────────────┘│▼┌─────────────────────────┐│  Desktop Interface      │ ──> Real-time inference HUD with confidence & risk breakdown└─────────────────────────┘
+
+```text
+Raw Email / CSV Input
+         │
+         ▼
+┌─────────────────────────┐
+│   NLP Preprocessing     │ ──> Lowercasing, regex URL/email stripping, deduplication
+└─────────────────────────┘
+         │
+         ▼
+┌─────────────────────────┐
+│   TF-IDF Vectorizer     │ ──> Unigram/Bigram feature extraction (Top 5,000 features)
+└─────────────────────────┘
+         │
+         ▼
+┌─────────────────────────┐
+│   Model Benchmarking    │ ──> Naive Bayes | Logistic Reg | Linear SVM | Random Forest
+└─────────────────────────┘
+         │
+         ▼
+┌─────────────────────────┐
+│  Optimal Model Selector │ ──> Auto-export best model artifacts to ./models/ (F1-score)
+└─────────────────────────┘
+         │
+         ▼
+┌─────────────────────────┐
+│    Desktop Interface    │ ──> Real-time inference HUD with confidence & risk breakdown
+└─────────────────────────┘
+```
 ---
 
 ## 🚀 Quick Start Guide
 
- 1. Clone the Repository
+### 1. Clone the Repository
 ```bash
 git clone [https://github.com/your-username/Spam-Shield-Enterprise-ML-Email-Threat-Filter.git](https://github.com/your-username/Spam-Shield-Enterprise-ML-Email-Threat-Filter.git)
 cd Spam-Shield-Enterprise-ML-Email-Threat-Filter
-## 2. Set Up a Virtual EnvironmentWindows:Bashpython -m venv venv
-venv\Scripts\activate
-macOS / Linux:Bashpython3 -m venv venv
-source venv/bin/activate
-## 3. Install DependenciesBashpip install -r requirements.txt
-4. Launch ApplicationBashpython main.py
-⌨️ Desktop Keyboard ShortcutsShortcutActionCtrl + OLoad custom CSV datasetCtrl + SExport and save model artifactsCtrl + TRetrain ML engineCtrl + QExit application📊 Dataset Auto-HarmonizationPlace any CSV dataset into the datasets/ folder (spam.csv or emails.csv). The pipeline automatically identifies and standardizes:Text Columns: text, v2, message, email, content, bodyLabel Columns: label, v1, category, spam, class, target📄 LicenseDistributed under the MIT License. See LICENSE for details.

@@ -1,62 +1,81 @@
-# Spam-Shield Enterprise ML Email Threat Filter
-An enterprise desktop security tool built with Python, CustomTkinter, and Scikit-Learn  . Features automated dataset harmonization, multi-model ML benchmarking (Naive Bayes, SVM, Logistic Regression, Random Forest), real-time threat risk grading, and embedded performance analytics  .
-# 🛡️ Spam-Shield Enterprise ML Email Threat Filter
+# Spam-Shield Email Threat Filter
 
-[![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![GUI Framework](https://img.shields.io/badge/GUI-CustomTkinter-blueviolet.svg)](https://github.com/TomSchimansky/CustomTkinter)
-[![ML Engine](https://img.shields.io/badge/ML-Scikit--Learn-orange.svg)](https://scikit-learn.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](LICENSE)
+A Python desktop prototype for classifying email text and presenting risk-oriented results. It uses CustomTkinter for the interface and scikit-learn for text preprocessing, model comparison, and classification.
 
-An enterprise desktop security tool built with Python, CustomTkinter, and Scikit-Learn. Features automated dataset harmonization, multi-model ML benchmarking (Naive Bayes, SVM, Logistic Regression, Random Forest), real-time threat risk grading, and embedded performance analytics.
+## Highlights
 
----
+- Accepts common email/text and label column variations from CSV datasets
+- Cleans and deduplicates text during preprocessing
+- Uses TF-IDF features for text representation
+- Compares Multinomial Naive Bayes, Logistic Regression, Linear SVM, and Random Forest models
+- Displays predictions, confidence-style scores, risk categories, and evaluation visualizations
+- Includes dataset distribution, model comparison, and confusion-matrix views
+- Includes a synthetic fallback dataset when no local CSV input is available
 
-## 🌟 Key Features
-
-* **Multi-Model Tournament Training**: Evaluates **Multinomial Naive Bayes**, **Logistic Regression**, **Linear SVM**, and **Random Forest**, automatically deploying the best model based on F1-score.
-* **Intelligent Data Preprocessor**: Ingests diverse CSV structures, maps column variations (`text`, `message`, `body` vs. `label`, `spam`, `category`), strips noise (URLs, emails, punctuation), and handles deduplication.
-* **Real-Time Risk Grading**: Provides class predictions along with calibrated confidence percentages and tiered threat levels (**Safe / Low**, **Moderate**, **High**, **Critical Risk**).
-* **Embedded Analytics Suite**: Integrated Matplotlib visualizations featuring dataset distribution donut charts, model comparison matrices, and confusion heatmaps.
-* **Modern Dark Glassmorphism UI**: Built on CustomTkinter with asynchronous training threads to maintain a smooth 60 FPS desktop experience.
-* **Synthetic Fallback Dataset**: Automatically generates synthetic sample data if no local CSV files are found.
-
----
-
-## 🏗️ ML & Architecture Pipeline
+## Processing Flow
 
 ```text
-Raw Email / CSV Input
-         │
-         ▼
-┌─────────────────────────┐
-│   NLP Preprocessing     │ ──> Lowercasing, regex URL/email stripping, deduplication
-└─────────────────────────┘
-         │
-         ▼
-┌─────────────────────────┐
-│   TF-IDF Vectorizer     │ ──> Unigram/Bigram feature extraction (Top 5,000 features)
-└─────────────────────────┘
-         │
-         ▼
-┌─────────────────────────┐
-│   Model Benchmarking    │ ──> Naive Bayes | Logistic Reg | Linear SVM | Random Forest
-└─────────────────────────┘
-         │
-         ▼
-┌─────────────────────────┐
-│  Optimal Model Selector │ ──> Auto-export best model artifacts to ./models/ (F1-score)
-└─────────────────────────┘
-         │
-         ▼
-┌─────────────────────────┐
-│    Desktop Interface    │ ──> Real-time inference HUD with confidence & risk breakdown
-└─────────────────────────┘
+CSV email data
+    -> column mapping and cleaning
+    -> TF-IDF feature extraction
+    -> model comparison
+    -> selected model and evaluation views
+    -> desktop prediction interface
 ```
----
 
-## 🚀 Quick Start Guide
+## Technology Stack
 
-### 1. Clone the Repository
+- Python 3.11+
+- CustomTkinter
+- scikit-learn
+- Matplotlib
+
+## Quick Start
+
+Create and activate a virtual environment, then install the dependencies required by the application:
+
 ```bash
-git clone [https://github.com/your-username/Spam-Shield-Enterprise-ML-Email-Threat-Filter.git](https://github.com/your-username/Spam-Shield-Enterprise-ML-Email-Threat-Filter.git)
-cd Spam-Shield-Enterprise-ML-Email-Threat-Filter
+python -m venv .venv
+```
+
+Windows:
+
+```bash
+.venv\\Scripts\\activate
+```
+
+macOS/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install the project's dependencies if a requirements file is provided:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Run the application:
+
+```bash
+python Main.py
+```
+
+## Included Data
+
+The repository contains CSV datasets for experimentation. Check dataset licensing and privacy requirements before redistributing or using additional email data.
+
+## Project Structure
+
+```text
+Main.py       # Application entry point
+spam.csv      # Spam dataset
+emails.csv    # Email dataset
+README.md     # Project documentation
+LICENSE       # License information
+```
+
+## Limitations
+
+This is a learning and demonstration project. Model scores depend on the dataset and evaluation procedure; predictions should not be treated as a standalone security decision.

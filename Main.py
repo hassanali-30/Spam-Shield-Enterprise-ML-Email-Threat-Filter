@@ -92,8 +92,10 @@ FONT_SUBTITLE = (FONT_FAMILY, 14, "bold")
 FONT_BODY = (FONT_FAMILY, 12)
 FONT_CAPTION = (FONT_FAMILY, 10)
 
-# Paths Configuration
-DATASETS_DIR = Path("./datasets")
+# Paths Configuration. Resolve relative to this file so the application works
+# when launched from any working directory.
+PROJECT_DIR = Path(__file__).resolve().parent
+DATASETS_DIR = PROJECT_DIR / "datasets"
 MODELS_DIR = Path("./models")
 DATASETS_DIR.mkdir(parents=True, exist_ok=True)
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
@@ -187,8 +189,11 @@ class DataPreprocessor:
         target_files = ["spam.csv", "emails.csv"]
         
         for file_name in target_files:
-            file_path = DATASETS_DIR / file_name
-            if file_path.exists():
+            # Prefer the writable datasets directory, then use the CSV files
+            # shipped beside Main.py for a fresh checkout.
+            candidates = [DATASETS_DIR / file_name, PROJECT_DIR / file_name]
+            file_path = next((path for path in candidates if path.exists()), None)
+            if file_path is not None:
                 try:
                     # Attempt reading with fallback encodings
                     try:
@@ -203,7 +208,7 @@ class DataPreprocessor:
 
         # Synthetic Fallback Dataset if local files missing
         if not dfs:
-            logger.warning("No datasets found in ./datasets/. Generating high-quality synthetic fallback dataset.")
+            logger.warning("No bundled datasets found. Generating a synthetic fallback dataset.")
             dfs.append(cls._generate_synthetic_dataset())
 
         # Merge in memory using pd.concat

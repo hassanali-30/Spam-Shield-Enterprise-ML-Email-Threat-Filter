@@ -50,7 +50,7 @@ macOS/Linux:
 source .venv/bin/activate
 ```
 
-Install the project's dependencies if a requirements file is provided:
+Install the project's dependencies:
 
 ```bash
 python -m pip install -r requirements.txt
@@ -64,7 +64,7 @@ python Main.py
 
 ## Included Data
 
-The repository contains CSV datasets for experimentation. Check dataset licensing and privacy requirements before redistributing or using additional email data.
+The repository contains CSV datasets for experimentation. The application reads the bundled root CSV files automatically and also accepts files placed in `datasets/`. Check dataset licensing and privacy requirements before redistributing or using additional email data.
 
 ## Project Structure
 

@@ -45,6 +45,10 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import customtkinter as ctk
 
+# Resolve all application data relative to this file so the app works when
+# launched from any working directory.
+PROJECT_DIR = Path(__file__).resolve().parent
+
 # Matplotlib GUI Integration
 import matplotlib
 matplotlib.use("TkAgg")
@@ -55,7 +59,7 @@ from matplotlib.figure import Figure
 # -----------------------------------------------------------------------------
 # LOGGING CONFIGURATION
 # -----------------------------------------------------------------------------
-LOG_DIR = Path("./logs")
+LOG_DIR = PROJECT_DIR / "logs"
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
@@ -92,11 +96,9 @@ FONT_SUBTITLE = (FONT_FAMILY, 14, "bold")
 FONT_BODY = (FONT_FAMILY, 12)
 FONT_CAPTION = (FONT_FAMILY, 10)
 
-# Paths Configuration. Resolve relative to this file so the application works
-# when launched from any working directory.
-PROJECT_DIR = Path(__file__).resolve().parent
+# Paths Configuration.
 DATASETS_DIR = PROJECT_DIR / "datasets"
-MODELS_DIR = Path("./models")
+MODELS_DIR = PROJECT_DIR / "models"
 DATASETS_DIR.mkdir(parents=True, exist_ok=True)
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -1409,3 +1411,4 @@ class SpamDetectorApp(ctk.CTk):
 if __name__ == "__main__":
     app = SpamDetectorApp()
     app.mainloop()
+
